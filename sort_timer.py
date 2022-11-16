@@ -10,13 +10,13 @@ from functools import wraps
 
 
 def bubble_sort(num_list):
+
     for sort_num in range(len(num_list) - 1):
         for swap_num in range(len(num_list) - sort_num - 1):
             if num_list[swap_num] > num_list[swap_num + 1]:
                 temp = num_list[swap_num]
                 num_list[swap_num] = num_list[swap_num + 1]
                 num_list[swap_num + 1] = temp
-
 
 def sort_timer(func):
     @wraps(func)
