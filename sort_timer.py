@@ -1,8 +1,10 @@
 # Author: Faith Elledge
 # Githubuser:
 # Date: 11/16/22
-# Description:
-import numbers
+# Description: Code finds how many seconds it takes for the decorated function to run as well as a
+# random numbered list. these values are then shown on a graph where the x values are the size and the y values are
+#time in seconds.
+
 import time
 import random
 from matplotlib import pyplot
@@ -40,8 +42,7 @@ def insertion_sort(num_list):
             pos -= 1
             num_list[pos + 1] = value
 
-
-def compare_sorts(dec_bubble1, dec_bubble2):
+def compare_sorts(dec_bubble, dec_insertion):
     """ Takes two decorated sort functions as parameters"""
     x_values = []
     y_values1 = []
@@ -52,11 +53,12 @@ def compare_sorts(dec_bubble1, dec_bubble2):
         num_list = []
         for x in range(size):
             num_list.append(random.randint(1, 10000))
-    y_values1.append(dec_bubble1(numbers))
-    y_values2.append(dec_bubble2(numbers))
+            num_list2 = list(num_list)
+        y_values1.append(dec_bubble(num_list))
+        y_values2.append(dec_insertion(num_list2))
 
     pyplot.plot(x_values, y_values1, 'ro--', linewidth=2, label="Bubble Sort")
-    pyplot.plot(x_values, y_values2, 'ro--', linewidth=2, label="Insertation Sort")
+    pyplot.plot(x_values, y_values2, 'go--', linewidth=2, label="Insertation Sort")
     pyplot.xlabel("Size")
     pyplot.ylabel(" Time in seconds ")
     pyplot.legend(loc='upper left')
