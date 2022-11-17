@@ -8,16 +8,8 @@ import random
 from matplotlib import pyplot
 from functools import wraps
 
-
-def bubble_sort(num_list):
-    for sort_num in range(len(num_list) - 1):
-        for swap_num in range(len(num_list) - sort_num - 1):
-            if num_list[swap_num] > num_list[swap_num + 1]:
-                temp = num_list[swap_num]
-                num_list[swap_num] = num_list[swap_num + 1]
-                num_list[swap_num + 1] = temp
-
 def sort_timer(func):
+    """ Times how many seconds it takes the decorated function to run"""
     @wraps(func)
     def wrapper(*args, **kwargs):
         start = time.perf_counter()
@@ -26,8 +18,20 @@ def sort_timer(func):
         return end - start
     return wrapper
 
+@sort_timer
+def bubble_sort(num_list):
+    """ Sorts List in asending Order"""
+    for sort_num in range(len(num_list) - 1):
+        for swap_num in range(len(num_list) - sort_num - 1):
+            if num_list[swap_num] > num_list[swap_num + 1]:
+                temp = num_list[swap_num]
+                num_list[swap_num] = num_list[swap_num + 1]
+                num_list[swap_num + 1] = temp
 
+@sort_timer
 def insertion_sort(num_list):
+    """Builds the sorted list one element at a time by comparing each item with the rest
+     of the list and inserting in into its correct position"""
     for i in range(1, len(num_list)):
         value = num_list[i]
         pos = i - 1
@@ -38,6 +42,7 @@ def insertion_sort(num_list):
 
 
 def compare_sorts(dec_bubble1, dec_bubble2):
+    """ Takes two decorated sort functions as parameters"""
     x_values = []
     y_values1 = []
     y_values2 = []
@@ -57,4 +62,4 @@ def compare_sorts(dec_bubble1, dec_bubble2):
     pyplot.legend(loc='upper left')
     pyplot.show()
 
-    compare_sorts((bubble_sort), (insertion_sort))
+compare_sorts(bubble_sort, insertion_sort)
