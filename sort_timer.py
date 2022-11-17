@@ -1,5 +1,5 @@
 # Author: Faith Elledge
-# Githubuser:
+# Githubuser:elledgef
 # Date: 11/16/22
 # Description: Code finds how many seconds it takes for the decorated function to run as well as a
 # random numbered list. these values are then shown on a graph where the x values are the size and the y values are
